@@ -40,5 +40,39 @@ require("lazy").setup({
     "williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
 	"neovim/nvim-lspconfig",
-    { "kyazdani42/nvim-tree.lua", event = "VimEnter", dependencies = "nvim-tree/nvim-web-devicons" },
+    
+    -- nvim-tree
+    { 
+        "kyazdani42/nvim-tree.lua", 
+        event = "VimEnter", 
+        dependencies = "nvim-tree/nvim-web-devicons", 
+        config = function()
+            require("config.nvim-tree")
+        end,
+    },
+
+    -- telescope
+    {
+		"nvim-telescope/telescope.nvim",
+		branch = "0.1.x",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("config.telescope")
+		end,
+	},
+
+    -- nvim-cmp
+    {
+		"hrsh7th/nvim-cmp",
+		dependencies = {
+			"lspkind.nvim",
+			"hrsh7th/cmp-nvim-lsp", -- lsp auto-completion
+			"hrsh7th/cmp-buffer", -- buffer auto-completion
+			"hrsh7th/cmp-path", -- path auto-completion
+			"hrsh7th/cmp-cmdline", -- cmdline auto-completion
+		},
+		config = function()
+			require("config.nvim-cmp")
+		end,
+	},
 })
